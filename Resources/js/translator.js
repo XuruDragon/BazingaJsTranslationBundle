@@ -25,6 +25,7 @@
         _cPluralRegex = new RegExp(/^\s*((\{\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*\})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]]))\s?(.+?)$/),
         _iPluralRegex = new RegExp(/^\s*(\{\s*(\-?\d+[\s*,\s*\-?\d+]*)\s*\})|([\[\]])\s*(-Inf|\-?\d+)\s*,\s*(\+?Inf|\-?\d+)\s*([\[\]])/),
         INTL_DOMAIN_SUFFIX = '+intl-icu';
+        INTL_DOMAIN_SUFFIX_SPECIALCHARS = '\u002Bintl\u002Dicu';
 
     var Translator = {
         /**
@@ -292,6 +293,7 @@
                     has_message(nationalLocaleFallback, _domains[i], id) ||
                     has_message(localeFallback, _domains[i], id)) {
                     _domain = _domains[i].replace(INTL_DOMAIN_SUFFIX, '');
+                    _domain = _domain.replace(INTL_DOMAIN_SUFFIX_SPECIALCHARS, '');
 
                     break;
                 }
